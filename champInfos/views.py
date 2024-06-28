@@ -1,4 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-print("test")
+def champ_info(request):
+    return render(request, 'champInfos/champInfos.html')
