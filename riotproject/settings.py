@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local apps
+    'test',
     'champInfos',
     'recordSearch',
 

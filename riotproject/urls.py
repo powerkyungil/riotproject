@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('champInfos/', include('champInfos.urls')),
     path('recordSearch/', include('recordSearch.urls')),
+    path('test/', include('test.urls')),
 ]

@@ -9,6 +9,18 @@
 
 <body>
     <h4>전적검색</h4>
+    <form method="get" action="{% url 'record_search' %}">
+        <input type="hidden" name="type" value="getRecord" required>
+        <input type="hidden" name="count" value="5" required>
+        <label for="gameName">게임 아이디:</label>
+        <input type="text" id="gameName" name="gameName" value="세웠습니다" required><br>
+        <label for="tagLine">태그:</label>
+        <input type="text" id="tagLine" name="tagLine" value="KR1" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>정보</div>
+    <div>{{ data }}</div>
 </body>
-    
+
 </html>
