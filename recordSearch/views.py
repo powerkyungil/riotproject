@@ -4,8 +4,8 @@ from django.shortcuts import render
 import urllib.parse
 import requests
 
-api_key = "RGAPI-752ec192-ec55-44a8-a900-0d89cef06352"
-gameName = '세웠습니다'
+api_key = "RGAPI-6d6d52f1-928a-4030-ba8f-f262e89fd8f1"
+gameName = '앙 안전띠'
 gameName = urllib.parse.quote(gameName)
 tagLine = 'KR1'
 base_url = "https://{region}.api.riotgames.com"
@@ -16,6 +16,7 @@ api_url = {
     "getMatchId": "/lol/match/v5/matches/by-puuid/{puuid}/ids",
     "getSummonerInfo": "/lol/league/v4/entries/by-summoner/{encryptedSummonerId}"
 }
+
 # Create your views here.
 def getData(request_url):
     result = {}
@@ -65,9 +66,8 @@ def get_record(data):
     #     "tagLine": "KR1"
     # }
     get_puuid = getData(requestUrl)
-
-    if not get_puuid:
-        return apiError("PUUID를 찾을 수 없습니다.")
+    if get_puuid.get("result") == "ERROR":
+        return get_puuid
 
     api_region = 'kr'
     url_template = base_url+api_url['getSummoner']
@@ -83,8 +83,12 @@ def get_record(data):
     # }
     get_summoner = getData(requestUrl)
 
-    if not get_summoner:
-        return apiError("소환자 정보를 찾을 수 없습니다.")
+    # if not get_summoner:
+    #     return apiError("소환자 정보를 찾을 수 없습니다.")
+    if get_summoner.get("result") == "ERROR":
+        return get_summoner
+    else:
+        result['get_summoner'] = get_summoner
 
     api_region = 'kr'
     url_template = base_url+api_url['getSummonerInfo']

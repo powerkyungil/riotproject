@@ -13,7 +13,7 @@
         <input type="hidden" name="type" value="getRecord" required>
         <input type="hidden" name="count" value="5" required>
         <label for="gameName">게임 아이디:</label>
-        <input type="text" id="gameName" name="gameName" value="세웠습니다" required><br>
+        <input type="text" id="gameName" name="gameName" value="앙 안전띠" required><br>
         <label for="tagLine">태그:</label>
         <input type="text" id="tagLine" name="tagLine" value="KR1" required><br>
         <button type="submit">Submit</button>
@@ -21,6 +21,17 @@
 
     <div>정보</div>
     <div>{{ data }}</div>
+    <div>티어</div>
+    <ul>
+        {% for info in data.summoner_info %}
+            <li>
+                <p>{{ info.queueType }}</p>
+                <p>{{ info.tier }} {{ info.rank }}</p>
+                <p>{{ info.wins }}</p>
+                <p>{{ info.losses }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
