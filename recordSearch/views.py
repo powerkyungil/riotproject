@@ -28,10 +28,18 @@ def getData(request_url):
     if response.status_code == 200:
         result = response.json()
     else:
-        result['code'] = response.status_code
         result = apiError("API 호출 ERROR")
+        result['code'] = response.status_code
 
     return result
+
+# TODO check request method
+def check_request_method(reqMethod):
+    result = {}
+    if reqMethod == "":
+        result['result'] = "ERROR"
+        result['message'] = ""
+        return result
 
 def apiError(message):
     result = {}
